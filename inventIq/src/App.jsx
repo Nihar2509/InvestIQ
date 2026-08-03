@@ -1,25 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
-
-// These pages will be created later
-// import Login from "./pages/Login";
-// import Signup from "./pages/Signup";
+import Login from "./Authentication/Login";
+import Register from "./Authentication/Register";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Register />} />
 
-        {/* Landing Page */}
-        <Route path="/" element={<LandingPage />} />
-
-        {/* Authentication */}
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/signup" element={<Signup />} /> */}
-
-      </Routes>
-    </BrowserRouter>
+    </Routes>
   );
 }
 

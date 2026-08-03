@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "InvestIQ Backend",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Pranav Sharma",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+  }
+}

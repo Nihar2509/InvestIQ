@@ -15,6 +15,7 @@ function LandingPage() {
 
       <Footer />
     </div>
+    
   );
 }
 

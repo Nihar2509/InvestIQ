@@ -1,0 +1,514 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#F8FAFC;
+}
+
+/* ==========================
+   REGISTER LAYOUT
+========================== */
+
+.register{
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top left,#E0ECFF 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#DCEBFF 0%,transparent 30%),
+    linear-gradient(135deg,#F8FAFC,#FFFFFF);
+
+}
+
+
+/* ==========================
+      LEFT SIDE
+========================== */
+
+.register-left{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:70px;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top left,
+    rgba(37,99,235,.08),
+    transparent 35%),
+
+    radial-gradient(circle at bottom right,
+    rgba(59,130,246,.08),
+    transparent 35%),
+
+    linear-gradient(
+        135deg,
+        #FFFFFF,
+        #F8FAFC,
+        #EEF4FF
+    );
+
+}
+
+.register-left::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    border-radius:50%;
+
+    background:rgba(37,99,235,.18);
+
+    top:-180px;
+
+    left:-180px;
+
+    filter:blur(70px);
+
+}
+
+.register-left::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    bottom:-120px;
+
+    right:-120px;
+
+    filter:blur(70px);
+
+}
+
+.register-left img{
+
+     width:85%;
+
+    max-width:480px;
+
+    filter:drop-shadow(0 30px 50px rgba(37,99,235,.15));
+
+    animation:float 5s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+.left-content{
+
+    z-index:2;
+
+    color:#1E293B;
+
+    text-align:center;
+
+}
+
+.left-content h1{
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+}
+
+.left-content p{
+
+    color:#64748B;
+
+
+    font-size:17px;
+
+    margin-bottom:30px;
+
+    line-height:1.7;
+
+}
+
+.feature{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+     color:#334155;
+
+    font-weight:500;
+
+}
+
+
+/* ==========================
+      RIGHT SIDE
+========================== */
+
+.register-right{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:50px;
+
+}
+
+.register-card{
+
+    width:100%;
+
+    max-width:520px;
+
+    padding:45px;
+
+    background:rgba(255,255,255,.9);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:28px;
+
+    border:1px solid rgba(255,255,255,.4);
+
+    box-shadow:
+
+    0 20px 60px rgba(15,23,42,.08);
+
+}
+
+.small-title{
+
+    color:#2563EB;
+
+    font-weight:700;
+
+    font-size:15px;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+}
+
+.register-card h2{
+
+    margin-top:8px;
+
+    font-size:2.3rem;
+
+    color:#1E293B;
+
+}
+
+.register-card p{
+
+    margin-top:10px;
+
+    color:#64748B;
+
+    margin-bottom:30px;
+
+}
+
+
+/* ==========================
+        INPUTS
+========================== */
+
+.input-group{
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#334155;
+
+    font-weight:600;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    border:1px solid #CBD5E1;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.35s;
+
+}
+
+.input-group input:focus{
+
+    border-color:#2563EB;
+
+    box-shadow:
+
+    0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+
+/* ==========================
+      ROLE BOX
+========================== */
+
+.role-box{
+
+    padding:15px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    font-weight:700;
+
+    background:#EEF4FF;
+
+    border:1px solid #BFDBFE;
+
+    color:#2563EB;
+
+}
+
+
+/* ==========================
+      TERMS
+========================== */
+
+.terms{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:14px;
+
+    color:#64748B;
+
+    margin:25px 0;
+
+}
+
+.terms input{
+
+    accent-color:#2563EB;
+
+}
+
+
+/* ==========================
+      BUTTON
+========================== */
+
+.register-card button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #2563EB,
+        #1D4ED8
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.register-card button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+    0 15px 35px rgba(37,99,235,.25);
+
+}
+
+
+/* ==========================
+      LOGIN LINK
+========================== */
+
+.bottom-text{
+
+    margin-top:28px;
+
+    text-align:center;
+
+    color:#64748B;
+
+}
+
+.bottom-text a{
+
+    margin-left:8px;
+
+    color:#2563EB;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+.bottom-text a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* ==========================
+      RESPONSIVE
+========================== */
+
+@media(max-width:1000px){
+
+.register{
+
+grid-template-columns:1fr;
+
+}
+
+.register-left{
+
+display:none;
+
+}
+
+.register-right{
+
+padding:30px;
+
+}
+
+.register-card{
+
+padding:35px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.register-card{
+
+padding:28px;
+
+}
+
+.register-card h2{
+
+font-size:2rem;
+
+}
+
+}
+.error-message {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #dc2626;
+}
+
+.success-message {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #16a34a;
+}
+
+.register-card button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
