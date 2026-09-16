@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
 const authRoutes = require("./routes/authRoutes");
+const startupRoutes = require("./routes/startupRoutes");
 
 const app = express();
 
@@ -33,6 +34,9 @@ app.use(cookieParser());
 
 // Authentication routes
 app.use("/api/auth", authRoutes);
+
+// Startup routes
+app.use("/api/startups", startupRoutes);
 
 // Test route
 app.get("/", (req, res) => {

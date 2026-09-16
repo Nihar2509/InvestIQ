@@ -1,8 +1,58 @@
 import "./Login.css";
 import authImage from "../assets/auth.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import api from "../api/api";
 
 function Login() {
+    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const handleLogin = async (e) => {
+  e.preventDefault();
+
+  setError("");
+
+  // Basic validation
+  if (!email || !password) {
+    setError("Email and password are required.");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const response = await api.post("/auth/login", {
+      email,
+      password
+    });
+
+    const { token, user } = response.data;
+
+localStorage.setItem("token", token);
+localStorage.setItem("user", JSON.stringify(user));
+
+console.log("Login successful:", user);
+if (user.role === "investor") {
+  navigate("/investor-dashboard");
+} else if (user.role === "startup") {
+  navigate("/startup-dashboard");
+}
+
+  } catch (error) {
+    console.error("Login error:", error);
+
+    setError(
+      error.response?.data?.message ||
+      "Login failed. Please try again."
+    );
+
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <section className="login">
       <div className="login-left">
@@ -15,18 +65,20 @@ function Login() {
             Sign in to continue to your InvestIQ dashboard.
           </p>
 
-          <form>
+          <form onSubmit={handleLogin}>
 
             <div className="input-group">
               <label>Email Address</label>
-              <input type="email" placeholder="Enter your email" />
+              <input type="email" placeholder="Enter your email" 
+              value={email}onChange={(e) => setEmail(e.target.value)}/>
             </div>
 
             <div className="input-group">
               <label>Password</label>
-              <input type="password" placeholder="Enter your password"/>
+              <input type="password" placeholder="Enter your password" 
+              value={password}onChange={(e) => setPassword(e.target.value)}/>
             </div>
-
+            {error && <p className="login-error">{error}</p>}
             <div className="options">
               <label>
                 <input type="checkbox" />Remember Me 
@@ -36,9 +88,9 @@ function Login() {
               </Link>
             </div>
 
-            <button className="login-btn">
-              Sign In
-            </button>
+            <button className="login-btn" type="submit" disabled={loading}>
+           {loading ? "Signing In..." : "Sign In"}
+           </button>
           </form>
           <p className="signup-text">
             Don't have an account?
