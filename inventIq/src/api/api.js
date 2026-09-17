@@ -20,7 +20,6 @@ API.interceptors.request.use(
     }
 );
 
-export default API;
 // Handle expired or invalid JWT
 API.interceptors.response.use(
     (response) => {
@@ -37,3 +36,5 @@ API.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+export default API;

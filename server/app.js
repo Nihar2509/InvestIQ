@@ -4,18 +4,14 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
-const authRoutes = require("./routes/authRoutes");
 const startupRoutes = require("./routes/startupRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
-// Parse JSON request body
 app.use(express.json());
-
-// Parse form data
 app.use(express.urlencoded({ extended: true }));
 
-// Allow frontend requests
 app.use(
     cors({
         origin: "http://localhost:5173",
@@ -23,22 +19,13 @@ app.use(
     })
 );
 
-// Security headers
 app.use(helmet());
-
-// Development request logger
 app.use(morgan("dev"));
-
-// Parse cookies
 app.use(cookieParser());
 
-// Authentication routes
 app.use("/api/auth", authRoutes);
-
-// Startup routes
 app.use("/api/startups", startupRoutes);
 
-// Test route
 app.get("/", (req, res) => {
     res.status(200).json({
         success: true,
