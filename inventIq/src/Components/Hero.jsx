@@ -9,9 +9,7 @@ function Hero() {
 
         <section className="hero">
 
-            <span className="badge">
-                AI Powered Platform
-            </span>
+           
 
             <h1>
                 Smarter Startup
@@ -21,9 +19,7 @@ function Hero() {
 
             <p>
 
-                Evaluate startups using AI, analyze business
-                documents, assess risks, and make confident
-                investment decisions.
+                Publish startups, connect with investors, and secure funding for your startup.
 
             </p>
 

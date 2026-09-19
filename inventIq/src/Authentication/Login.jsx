@@ -145,7 +145,7 @@ function Login() {
 
                         Don't have an account?
 
-                        <Link to="/">
+                        <Link to="/signup">
                             Create an account
                         </Link>
 

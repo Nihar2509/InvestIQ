@@ -7,7 +7,8 @@ const {
     updateMyStartup,
     publishMyStartup,
     pauseMyStartup,
-    getStartup
+    getStartup,
+    getAllStartups
 } = require("../controllers/startupController");
 
 const authMiddleware = require("../middleware/authMiddleware");
@@ -49,9 +50,10 @@ router.post(
 );
 
 router.get(
-    "/:id",
+    "/marketplace",
     authMiddleware,
-    getStartup
+    allowRoles("investor"),
+    getAllStartups
 );
 
 module.exports = router;

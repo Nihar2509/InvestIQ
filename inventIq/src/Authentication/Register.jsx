@@ -3,7 +3,6 @@ import authImage from "../assets/auth.png";
 
 import {
     Link,
-    useSearchParams,
     useNavigate
 } from "react-router-dom";
 
@@ -13,14 +12,7 @@ import API from "../api/api";
 
 function Register() {
 
-    const [searchParams] = useSearchParams();
     const navigate = useNavigate();
-
-    // Get role from URL:
-    // /signup?role=investor
-    // /signup?role=startup
-    const role = searchParams.get("role");
-
 
     // Form data
     const [formData, setFormData] = useState({
@@ -30,6 +22,8 @@ function Register() {
         confirmPassword: ""
     });
 
+    // Selected role
+    const [role, setRole] = useState("");
 
     // Terms checkbox
     const [agree, setAgree] = useState(false);
@@ -58,101 +52,62 @@ function Register() {
 
         e.preventDefault();
 
-        // Clear old messages
         setError("");
         setSuccess("");
 
 
-        // -----------------------
-        // VALIDATION
-        // -----------------------
+        // Validation
 
         if (!formData.name.trim()) {
-
             return setError("Full name is required");
-
         }
-
 
         if (!formData.email.trim()) {
-
             return setError("Email is required");
-
         }
-
 
         if (!formData.password) {
-
             return setError("Password is required");
-
         }
-
 
         if (!formData.confirmPassword) {
-
             return setError("Please confirm your password");
+        }
 
+        if (formData.password !== formData.confirmPassword) {
+            return setError("Passwords do not match");
         }
 
 
-        // Passwords must match
-        if (
-            formData.password !==
-            formData.confirmPassword
-        ) {
-
-            return setError(
-                "Passwords do not match"
-            );
-
-        }
-
-
-        // Strong password
         const strongPassword =
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
-
         if (!strongPassword.test(formData.password)) {
-
             return setError(
                 "Password must be at least 8 characters and contain uppercase, lowercase, number and special character"
             );
-
         }
 
 
-        // Role validation
-        if (
-            role !== "investor" &&
-            role !== "startup"
-        ) {
-
+        if (role !== "investor" && role !== "startup") {
             return setError(
-                "Please choose Investor or Startup Founder first"
+                "Please select an account type"
             );
-
         }
 
 
-        // Terms validation
         if (!agree) {
-
             return setError(
                 "Please accept the Terms & Conditions"
             );
-
         }
 
 
-        // -----------------------
-        // SEND TO BACKEND
-        // -----------------------
+        // Send to backend
 
         try {
 
             setLoading(true);
-
 
             const response = await API.post(
                 "/auth/register",
@@ -173,7 +128,6 @@ function Register() {
             );
 
 
-            // Clear form
             setFormData({
                 name: "",
                 email: "",
@@ -181,14 +135,12 @@ function Register() {
                 confirmPassword: ""
             });
 
+            setRole("");
             setAgree(false);
 
 
-            // Redirect to login
             setTimeout(() => {
-
                 navigate("/login");
-
             }, 1500);
 
 
@@ -196,12 +148,10 @@ function Register() {
 
             console.error(error);
 
-
             setError(
                 error.response?.data?.message ||
                 "Something went wrong. Please try again."
             );
-
 
         } finally {
 
@@ -216,7 +166,6 @@ function Register() {
 
         <section className="register">
 
-
             {/* LEFT SIDE */}
 
             <div className="register-left">
@@ -226,18 +175,15 @@ function Register() {
                     alt="Authentication"
                 />
 
-
                 <div className="left-content">
 
                     <h1>
                         InvestIQ
                     </h1>
 
-
                     <p>
                         AI Powered Startup Due Diligence Platform
                     </p>
-
 
                     <div className="feature">
 
@@ -264,32 +210,26 @@ function Register() {
             </div>
 
 
-
             {/* RIGHT SIDE */}
 
             <div className="register-right">
 
                 <div className="register-card">
 
-
                     <span className="small-title">
                         Create Account
                     </span>
-
 
                     <h2>
                         Join InvestIQ 🚀
                     </h2>
 
-
                     <p>
-                        Start your AI-powered investment journey today.
+                        Start your investment journey today.
                     </p>
 
 
-
                     <form onSubmit={handleSubmit}>
-
 
                         {/* NAME */}
 
@@ -308,7 +248,6 @@ function Register() {
                             />
 
                         </div>
-
 
 
                         {/* EMAIL */}
@@ -330,7 +269,6 @@ function Register() {
                         </div>
 
 
-
                         {/* PASSWORD */}
 
                         <div className="input-group">
@@ -348,7 +286,6 @@ function Register() {
                             />
 
                         </div>
-
 
 
                         {/* CONFIRM PASSWORD */}
@@ -370,7 +307,6 @@ function Register() {
                         </div>
 
 
-
                         {/* ROLE */}
 
                         <div className="input-group">
@@ -379,21 +315,42 @@ function Register() {
                                 Account Type
                             </label>
 
+                            <div className="role-selection">
 
-                            <div className="role-box">
+                                <button
+                                    type="button"
+                                    className={
+                                        role === "startup"
+                                            ? "role-option active"
+                                            : "role-option"
+                                    }
+                                    onClick={() => setRole("startup")}
+                                >
+                                    🚀
+                                    <span>
+                                        Startup Founder
+                                    </span>
+                                </button>
 
-                                {
-                                    role === "startup"
-                                        ? "🚀 Startup Founder"
-                                        : role === "investor"
-                                        ? "👨‍💼 Investor"
-                                        : "Please choose a role"
-                                }
+
+                                <button
+                                    type="button"
+                                    className={
+                                        role === "investor"
+                                            ? "role-option active"
+                                            : "role-option"
+                                    }
+                                    onClick={() => setRole("investor")}
+                                >
+                                    👨‍💼
+                                    <span>
+                                        Investor
+                                    </span>
+                                </button>
 
                             </div>
 
                         </div>
-
 
 
                         {/* TERMS */}
@@ -408,7 +365,6 @@ function Register() {
                                 }
                             />
 
-
                             <span>
                                 I agree to the Terms & Conditions
                             </span>
@@ -416,33 +372,22 @@ function Register() {
                         </div>
 
 
-
                         {/* ERROR */}
 
-                        {
-                            error && (
-
-                                <p className="error-message">
-                                    {error}
-                                </p>
-
-                            )
-                        }
-
+                        {error && (
+                            <p className="error-message">
+                                {error}
+                            </p>
+                        )}
 
 
                         {/* SUCCESS */}
 
-                        {
-                            success && (
-
-                                <p className="success-message">
-                                    {success}
-                                </p>
-
-                            )
-                        }
-
+                        {success && (
+                            <p className="success-message">
+                                {success}
+                            </p>
+                        )}
 
 
                         {/* SUBMIT */}
@@ -452,17 +397,14 @@ function Register() {
                             disabled={loading}
                         >
 
-                            {
-                                loading
-                                    ? "Creating Account..."
-                                    : "Create Account"
+                            {loading
+                                ? "Creating Account..."
+                                : "Create Account"
                             }
 
                         </button>
 
-
                     </form>
-
 
 
                     <div className="bottom-text">
@@ -474,7 +416,6 @@ function Register() {
                         </Link>
 
                     </div>
-
 
                 </div>
 

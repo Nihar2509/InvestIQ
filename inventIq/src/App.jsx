@@ -5,11 +5,18 @@ import Login from "./Authentication/Login";
 import Register from "./Authentication/Register";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
+import StartupDashboard from "./StartupDashboard/StartupDashboard";
+import InvestorMarketplace from "./InvestorMarketplace/InvestorMarketplace";
+import StartupDetails from "./StartupDetails/StartupDetails";
+import InvestorDashboard from "./InvestorDashboard/InvestorDashboard";
+
 function TestProtectedPage() {
     return (
         <div>
             <h1>Protected Page</h1>
-            <p>You are successfully authenticated.</p>
+            <p>
+                You are successfully authenticated.
+            </p>
         </div>
     );
 }
@@ -17,12 +24,65 @@ function TestProtectedPage() {
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<LandingPage />} />
 
-            <Route path="/login" element={<Login />} />
+            {/* Landing Page */}
+            <Route
+                path="/"
+                element={<LandingPage />}
+            />
 
-            <Route path="/signup" element={<Register />} />
+            {/* Authentication */}
+            <Route
+                path="/login"
+                element={<Login />}
+            />
 
+            <Route
+                path="/signup"
+                element={<Register />}
+            />
+
+            {/* Startup Founder Dashboard */}
+            <Route
+                path="/startup-dashboard"
+                element={
+                    <ProtectedRoute role="startup">
+                        <StartupDashboard />
+                    </ProtectedRoute>
+                }
+            />
+
+            {/* Investor Dashboard */}
+            <Route
+                path="/investor-dashboard"
+                element={
+                    <ProtectedRoute role="investor">
+                        <InvestorDashboard />
+                    </ProtectedRoute>
+                }
+            />
+
+            {/* Investor Marketplace */}
+            <Route
+                path="/investor-marketplace"
+                element={
+                    <ProtectedRoute role="investor">
+                        <InvestorMarketplace />
+                    </ProtectedRoute>
+                }
+            />
+
+            {/* Startup Details */}
+            <Route
+                path="/startup/:id"
+                element={
+                    <ProtectedRoute role="investor">
+                        <StartupDetails />
+                    </ProtectedRoute>
+                }
+            />
+
+            {/* Protected Route Test */}
             <Route
                 path="/protected-test"
                 element={
@@ -31,6 +91,7 @@ function App() {
                     </ProtectedRoute>
                 }
             />
+
         </Routes>
     );
 }
