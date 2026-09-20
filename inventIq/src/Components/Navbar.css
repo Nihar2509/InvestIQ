@@ -39,12 +39,12 @@ body{
     backdrop-filter:blur(22px);
     -webkit-backdrop-filter:blur(22px);
 
-    border:1px solid rgba(255,255,255,.4);
+    border:1px solid rgba(0,0,0,.08);
 
     border-radius:22px;
 
     box-shadow:
-        0 12px 35px rgba(15,23,42,.08),
+        0 12px 35px rgba(0,0,0,.08),
         inset 0 1px 1px rgba(255,255,255,.8);
 
     overflow:hidden;
@@ -52,7 +52,9 @@ body{
     z-index:999;
 }
 
-/* Gradient Border Effect */
+/* ===========================
+   BLACK GRADIENT BORDER
+=========================== */
 
 .navbar::before{
 
@@ -69,9 +71,9 @@ body{
     background:
     linear-gradient(
         135deg,
-        rgba(37,99,235,.35),
-        rgba(255,255,255,.6),
-        rgba(59,130,246,.25)
+        rgba(0,0,0,.35),
+        rgba(255,255,255,.7),
+        rgba(0,0,0,.25)
     );
 
     -webkit-mask:
@@ -80,10 +82,9 @@ body{
 
     -webkit-mask-composite:xor;
 
-            mask-composite:exclude;
+    mask-composite:exclude;
 
     pointer-events:none;
-
 }
 
 /* ===========================
@@ -96,7 +97,7 @@ body{
 
     font-weight:900;
 
-    color:#334155;
+    color:#111827;
 
     cursor:pointer;
 
@@ -105,7 +106,7 @@ body{
 
 .logo span{
 
-    color:#2563EB;
+    color:#000000;
 }
 
 .logo:hover{
@@ -113,7 +114,7 @@ body{
     transform:translateY(-2px);
 
     text-shadow:
-        0 8px 20px rgba(37,99,235,.25);
+        0 8px 20px rgba(0,0,0,.20);
 
 }
 
@@ -165,14 +166,14 @@ body{
 
     border-radius:10px;
 
-    background:#2563EB;
+    background:#000000;
 
     transition:.3s;
 }
 
 .nav-links a:hover{
 
-    color:#2563EB;
+    color:#000000;
 }
 
 .nav-links a:hover::after{
@@ -191,19 +192,21 @@ body{
     gap:14px;
 }
 
-/* Login */
+/* ===========================
+   LOGIN BUTTON - BLACK
+=========================== */
 
 .login-btn{
 
     padding:12px 28px;
 
+    border:none;
+
     border-radius:12px;
 
-    border:1px solid #CBD5E1;
+    background:#000000;
 
-    background:white;
-
-    color:#334155;
+    color:white;
 
     font-size:15px;
 
@@ -213,21 +216,25 @@ body{
 
     transition:.35s;
 
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.18);
 }
 
 .login-btn:hover{
 
-    background:#F8FAFC;
+    background:#111111;
 
-    border-color:#2563EB;
+    color:white;
 
-    color:#2563EB;
+    transform:translateY(-3px);
 
-    transform:translateY(-2px);
-
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.28);
 }
 
-/* Signup */
+/* ===========================
+   SIGNUP BUTTON - BLACK
+=========================== */
 
 .signup-btn{
 
@@ -237,12 +244,7 @@ body{
 
     border-radius:12px;
 
-    background:
-    linear-gradient(
-        135deg,
-        #2563EB,
-        #1D4ED8
-    );
+    background:#000000;
 
     color:white;
 
@@ -255,17 +257,19 @@ body{
     transition:.35s;
 
     box-shadow:
-        0 12px 25px rgba(37,99,235,.22);
-
+        0 12px 25px rgba(0,0,0,.18);
 }
 
 .signup-btn:hover{
 
+    background:#111111;
+
+    color:white;
+
     transform:translateY(-3px);
 
     box-shadow:
-        0 20px 40px rgba(37,99,235,.35);
-
+        0 20px 40px rgba(0,0,0,.28);
 }
 
 /* ===========================

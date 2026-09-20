@@ -1,0 +1,152 @@
+
+
+
+
+
+
+.contact-page {
+    min-height: 100vh;
+    padding: 30px 20px 80px;
+    background: linear-gradient(
+        135deg,
+        #f8f5f1,
+        #eee9e4,
+        #e8e5e8
+    );
+    color: #292524;
+}
+
+.contact-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-header {
+    max-width: 700px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.contact-label {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: #ffffff;
+    border: 1px solid #e5e1dc;
+    color: #57534e;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.contact-header h1 {
+    margin-top: 25px;
+    font-size: 46px;
+    line-height: 1.15;
+}
+
+.contact-header > p:last-child {
+    margin-top: 20px;
+    color: #57534e;
+    line-height: 1.7;
+}
+
+.contact-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e5e1dc;
+    border-radius: 16px;
+}
+
+.contact-info h2 {
+    margin-bottom: 15px;
+    font-size: 26px;
+}
+
+.contact-info > p {
+    color: #57534e;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.contact-detail {
+    margin-bottom: 20px;
+}
+
+.contact-detail strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-detail span {
+    color: #57534e;
+    font-size: 14px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d6d3d1;
+    border-radius: 9px;
+    background: #faf9f7;
+    color: #292524;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #292524;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.contact-form button {
+    padding: 13px;
+    border: none;
+    border-radius: 9px;
+    background: #171717;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background: #292524;
+}
+
+@media (max-width: 700px) {
+    .contact-header h1 {
+        font-size: 34px;
+    }
+
+    .contact-card {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+}

@@ -5,19 +5,31 @@ function Navbar() {
   return (
     <nav className="navbar">
 
-      <div className="logo">
+      <Link to="/" className="logo">
         Invest<span>IQ</span>
-      </div>
+      </Link>
 
       <ul className="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li>
+          <Link to="/features">Features</Link>
+        </li>
+
+        
+        <li>
+          <a href="/pricing">Pricing</a>
+        </li>
+
+        <li>
+          <a href="/about">About</a>
+        </li>
+
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
       </ul>
 
       <div className="nav-buttons">
+
         <Link to="/login">
           <button className="login-btn">
             Login
@@ -29,6 +41,7 @@ function Navbar() {
             Get Started
           </button>
         </Link>
+
       </div>
 
     </nav>

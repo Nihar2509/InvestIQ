@@ -19,7 +19,8 @@ function Hero() {
 
             <p>
 
-                Publish startups, connect with investors, and secure funding for your startup.
+                Publish startups, connect with investors,
+                and secure funding for your startup.
 
             </p>
 

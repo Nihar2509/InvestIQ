@@ -9,6 +9,10 @@ import StartupDashboard from "./StartupDashboard/StartupDashboard";
 import InvestorMarketplace from "./InvestorMarketplace/InvestorMarketplace";
 import StartupDetails from "./StartupDetails/StartupDetails";
 import InvestorDashboard from "./InvestorDashboard/InvestorDashboard";
+import Pricing from "./pages/Pricing";
+import About from "./pages/About";
+import Features from "./pages/Features";
+import Contact from "./pages/Contact";
 
 function TestProtectedPage() {
     return (
@@ -91,8 +95,27 @@ function App() {
                     </ProtectedRoute>
                 }
             />
+            <Route
+    path="/pricing"
+    element={<Pricing />}
+    
+/>
+<Route
+    path="/about"
+    element={<About />}
+/>
+<Route
+    path="/Features"
+    element={<Features />}
+/>
+<Route
+    path="/Contact"
+    element={<Contact />}
+/>
 
         </Routes>
+
+        
     );
 }
 
