@@ -1,0 +1,20 @@
+# Environment files
+.env
+*.env
+
+# Node modules
+node_modules/
+
+# Frontend
+inventIq/node_modules/
+inventIq/dist/
+
+# Backend
+server/node_modugit statusles/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
