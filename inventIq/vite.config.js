@@ -7,8 +7,9 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-  ],
+  ], 
   server: {
   allowedHosts: ["bats-reconcile-scrutiny.ngrok-free.dev"],
+   
   },
 })

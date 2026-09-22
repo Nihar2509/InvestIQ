@@ -326,7 +326,7 @@ function Register() {
                                     }
                                     onClick={() => setRole("startup")}
                                 >
-                                    🚀
+                                    
                                     <span>
                                         Startup Founder
                                     </span>
@@ -342,7 +342,7 @@ function Register() {
                                     }
                                     onClick={() => setRole("investor")}
                                 >
-                                    👨‍💼
+                                    
                                     <span>
                                         Investor
                                     </span>
