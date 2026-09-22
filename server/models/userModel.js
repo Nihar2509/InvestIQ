@@ -1,24 +1,29 @@
-let users = [];
-let nextUserId = 1;
+const pool = require("../config/db");
 
 const createUser = async (name, email, password, role) => {
-    const user = {
-        id: nextUserId++,
-        name,
-        email,
-        password,
-        role
-    };
+    const result = await pool.query(
+        `
+        INSERT INTO users (name, email, password, role)
+        VALUES ($1, $2, $3, $4)
+        RETURNING id, name, email, password, role
+        `,
+        [name, email, password, role]
+    );
 
-    users.push(user);
-
-    return user;
+    return result.rows[0];
 };
 
 const findUserByEmail = async (email) => {
-    return users.find(
-        (user) => user.email.toLowerCase() === email.toLowerCase()
+    const result = await pool.query(
+        `
+        SELECT id, name, email, password, role
+        FROM users
+        WHERE LOWER(email) = LOWER($1)
+        `,
+        [email]
     );
+
+    return result.rows[0] || null;
 };
 
 module.exports = {
