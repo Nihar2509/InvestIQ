@@ -1,16 +1,13 @@
 const startupModel = require("../models/startupModel");
 
-
 // ==========================================
 // CREATE STARTUP
 // ==========================================
 
 const createStartup = async (req, res) => {
     try {
-        // Get founder ID from authenticated JWT
         const founderId = req.user.id;
 
-        // Check if founder already has a startup
         const existingStartup =
             await startupModel.getStartupByFounder(founderId);
 
@@ -21,7 +18,6 @@ const createStartup = async (req, res) => {
             });
         }
 
-        // Startup name is required
         if (!req.body.name || !req.body.name.trim()) {
             return res.status(400).json({
                 success: false,
@@ -29,7 +25,6 @@ const createStartup = async (req, res) => {
             });
         }
 
-        // Create startup
         const startup = await startupModel.createStartup(
             founderId,
             req.body
@@ -50,7 +45,6 @@ const createStartup = async (req, res) => {
         });
     }
 };
-
 
 // ==========================================
 // GET LOGGED-IN FOUNDER'S STARTUP
@@ -84,7 +78,6 @@ const getMyStartup = async (req, res) => {
         });
     }
 };
-
 
 // ==========================================
 // UPDATE LOGGED-IN FOUNDER'S STARTUP
@@ -122,7 +115,6 @@ const updateMyStartup = async (req, res) => {
     }
 };
 
-
 // ==========================================
 // PUBLISH STARTUP
 // ==========================================
@@ -156,7 +148,6 @@ const publishMyStartup = async (req, res) => {
         });
     }
 };
-
 
 // ==========================================
 // PAUSE STARTUP
@@ -192,7 +183,6 @@ const pauseMyStartup = async (req, res) => {
     }
 };
 
-
 // ==========================================
 // GET STARTUP BY ID
 // ==========================================
@@ -201,8 +191,12 @@ const getStartup = async (req, res) => {
     try {
         const startupId = req.params.id;
 
+        console.log("Requested startup ID:", startupId);
+
         const startup =
             await startupModel.getStartupById(startupId);
+
+        console.log("Startup returned from database:", startup);
 
         if (!startup) {
             return res.status(404).json({
@@ -210,13 +204,6 @@ const getStartup = async (req, res) => {
                 message: "Startup not found."
             });
         }
-
-        /*
-         * Published startups can be viewed by investors.
-         *
-         * A founder can view their own startup,
-         * even if it is DRAFT or PAUSED.
-         */
 
         const isOwner =
             Number(req.user.id) === Number(startup.founder_id);
@@ -243,7 +230,6 @@ const getStartup = async (req, res) => {
     }
 };
 
-
 // ==========================================
 // GET ALL PUBLISHED STARTUPS
 // INVESTOR MARKETPLACE
@@ -251,8 +237,8 @@ const getStartup = async (req, res) => {
 
 const getAllStartups = async (req, res) => {
     try {
-
-        const startups = await startupModel.getAllPublishedStartups();
+        const startups =
+            await startupModel.getAllPublishedStartups();
 
         return res.status(200).json({
             success: true,
@@ -260,7 +246,6 @@ const getAllStartups = async (req, res) => {
         });
 
     } catch (error) {
-
         console.error("Get all startups error:", error);
 
         return res.status(500).json({
@@ -269,7 +254,6 @@ const getAllStartups = async (req, res) => {
         });
     }
 };
-
 
 // ==========================================
 // EXPORT

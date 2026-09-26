@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 
 const {
@@ -13,6 +14,10 @@ const {
 
 const authMiddleware = require("../middleware/authMiddleware");
 const allowRoles = require("../middleware/roleMiddleware");
+
+// ==========================================
+// FOUNDER ROUTES
+// ==========================================
 
 router.post(
     "/",
@@ -49,11 +54,26 @@ router.post(
     pauseMyStartup
 );
 
+// ==========================================
+// INVESTOR ROUTES
+// ==========================================
+
 router.get(
     "/marketplace",
     authMiddleware,
     allowRoles("investor"),
     getAllStartups
+);
+
+// ==========================================
+// GET SINGLE STARTUP
+// ==========================================
+
+router.get(
+    "/:id",
+    authMiddleware,
+    allowRoles("investor"),
+    getStartup
 );
 
 module.exports = router;

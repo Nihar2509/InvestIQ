@@ -221,7 +221,7 @@ function Register() {
                     </span>
 
                     <h2>
-                        Join InvestIQ 🚀
+                        Join InvestIQ 
                     </h2>
 
                     <p>
